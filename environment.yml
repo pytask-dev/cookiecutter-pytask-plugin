@@ -1,0 +1,31 @@
+name: pytask-xxxxx
+
+channels:
+  - conda-forge
+  - nodefaults
+
+dependencies:
+  - python
+  - pip
+  - setuptools_scm
+  - toml
+
+  # Conda
+  - anaconda-client
+  - conda-build
+  - conda-verify
+
+  # Package dependencies
+  - pytask >=0.1.5
+  - pytask-parallel >=0.1.0
+  - xxxxx-xxxxx IN CASE YOUR LANGUAGE IS conda-INSTALLABLE
+
+  # Misc
+  - black
+  - bumpversion
+  - jupyterlab
+  - pdbpp
+  - pre-commit
+  - pytest-cov
+  - pytest-xdist
+  - tox-conda
