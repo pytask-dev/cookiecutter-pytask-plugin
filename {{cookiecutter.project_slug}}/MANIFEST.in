@@ -1,12 +1,9 @@
-prune .conda
 prune tests
 
 exclude *.rst
 exclude *.yml
 exclude *.yaml
-exclude tox.ini
+exclude *.ini
 
 include README.rst
 include LICENSE
-include versioneer.py
-include src/pytask_xxxxx/_version.py

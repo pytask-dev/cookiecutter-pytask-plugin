@@ -1,7 +1,7 @@
 ---
 
 name: Enhancement
-about: Suggest an idea for cookiecutter-pytask
+about: Suggest an idea for pytask-xxxxx
 title: "ENH:"
 labels: "enhancement"
 
@@ -9,8 +9,8 @@ labels: "enhancement"
 
 #### Is your feature request related to a problem?
 
-Provide a description of what the problem is, e.g. "I wish I could use
-cookiecutter-pytask to do [...]".
+Provide a description of what the problem is, e.g. "I wish I could use pytask-xxxxx
+to do [...]".
 
 #### Describe the solution you'd like
 

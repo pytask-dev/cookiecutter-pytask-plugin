@@ -1,14 +1,11 @@
 Changes
 =======
 
-This is a record of all past pytask-xxxxx releases and what went into them in reverse
-chronological order. Releases follow `semantic versioning <https://semver.org/>`_ and
-all releases are available on `PyPI <https://pypi.org/project/pytask-r>`_ and
-`Anaconda.org <https://anaconda.org/conda-forge/pytask-r>`_.
+This is a record of all past cookiecutter-pytask-plugin releases and what went into them
+in reverse chronological order.
 
 
-0.0.1 - 202X-XX-XX
+1.0.0 - 2022-01-14
 ------------------
 
-- :gh:`01` fixes ...
-
+- :gh:`1` converts the template to a cookiecutter.

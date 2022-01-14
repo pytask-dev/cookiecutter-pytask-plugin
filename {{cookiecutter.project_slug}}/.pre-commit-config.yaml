@@ -3,12 +3,12 @@ repos:
     rev: v4.0.1
     hooks:
     -   id: check-added-large-files
-        args: ['--maxkb=25']
+        args: ['--maxkb=100']
     -   id: check-case-conflict
     -   id: check-merge-conflict
     -   id: check-vcs-permalinks
     -   id: check-yaml
-        exclude: "{{cookiecutter.project_slug}}/environment.yml"
+        exclude: meta.yaml
     -   id: debug-statements
     -   id: end-of-file-fixer
     -   id: fix-byte-order-marker
@@ -30,31 +30,32 @@ repos:
     -   id: rst-inline-touching-normal
     -   id: text-unicode-replacement-char
 -   repo: https://github.com/asottile/pyupgrade
-    rev: v2.29.1
+    rev: v2.21.2
     hooks:
     -   id: pyupgrade
-        args: [--py37-plus]
+        args: [--py36-plus]
 -   repo: https://github.com/asottile/reorder_python_imports
-    rev: v2.6.0
+    rev: v2.5.0
     hooks:
     -   id: reorder-python-imports
 -   repo: https://github.com/asottile/setup-cfg-fmt
-    rev: v1.20.0
+    rev: v1.17.0
     hooks:
     -   id: setup-cfg-fmt
 -   repo: https://github.com/psf/black
-    rev: 21.12b0
+    rev: 21.7b0
     hooks:
     -   id: black
 -   repo: https://github.com/asottile/blacken-docs
-    rev: v1.12.0
+    rev: v1.10.0
     hooks:
     -   id: blacken-docs
         additional_dependencies: [black]
 -   repo: https://github.com/PyCQA/flake8
-    rev: 4.0.1
+    rev: 3.9.2
     hooks:
     -   id: flake8
+        types: [python]
         additional_dependencies: [
             flake8-alfred,
             flake8-bugbear,
@@ -72,33 +73,23 @@ repos:
             Pygments,
         ]
 -   repo: https://github.com/PyCQA/doc8
-    rev: 0.10.1
+    rev: 0.9.0
     hooks:
     -   id: doc8
 -   repo: https://github.com/econchick/interrogate
-    rev: 1.5.0
+    rev: 1.4.0
     hooks:
     -   id: interrogate
-        args: [-v, --fail-under=40, "{{cookiecutter.project_slug}}"]
-        pass_filenames: false
--   repo: https://github.com/codespell-project/codespell
-    rev: v2.1.0
-    hooks:
+        args: [-v, --fail-under=40, src, tests]
+- repo: https://github.com/codespell-project/codespell
+  rev: v2.1.0
+  hooks:
     -   id: codespell
--   repo: https://github.com/guilatrova/tryceratops
-    rev: v1.0.0
+        args: [-L unparseable]
+-   repo: https://github.com/mgedmin/check-manifest
+    rev: "0.46"
     hooks:
-    -   id: tryceratops
--   repo: https://github.com/pre-commit/mirrors-mypy
-    rev: 'v0.910-1'
-    hooks:
-    -   id: mypy
-        args: [
-            --no-strict-optional,
-            --ignore-missing-imports,
-        ]
-        pass_filenames: false
-        language_version: "3.9"
+    -   id: check-manifest
 -   repo: meta
     hooks:
     -   id: check-hooks-apply
