@@ -26,18 +26,32 @@ Usage:
 {{ cookiecutter.project_name }}
 {% for _ in cookiecutter.project_name %}={% endfor %}
 
-{% if cookiecutter.add_github_actions == "yes" %}.. image:: https://img.shields.io/github/workflow/status/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/main/main
-    :target: https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/actions?query=branch%3Amain
+.. image:: https://img.shields.io/pypi/pyversions/{{ cookiecutter.project_name }}
+    :alt: PyPI - Python Version
+    :target: https://pypi.org/project/{{ cookiecutter.project_name }}
+
+.. image:: https://img.shields.io/conda/vn/conda-forge/{{ cookiecutter.project_name }}.svg
+    :target: https://anaconda.org/conda-forge/{{ cookiecutter.project_name }}
+
+.. image:: https://img.shields.io/conda/pn/conda-forge/{{ cookiecutter.project_name }}.svg
+    :target: https://anaconda.org/conda-forge/{{ cookiecutter.project_name }}
+
+.. image:: https://img.shields.io/pypi/l/{{ cookiecutter.project_name }}
+    :alt: PyPI - License
+    :target: https://pypi.org/project/{{ cookiecutter.project_name }}
+
+{% if cookiecutter.add_github_actions == "yes" %}.. image:: https://img.shields.io/github/workflow/status/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name }}/main/main
+    :target: https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name }}/actions?query=branch%3Amain
 {% endif %}
 {% if cookiecutter.add_readthedocs == "yes" %}.. image:: https://readthedocs.org/projects/{{ cookiecutter.project_slug | replace("_", "-") }}/badge/?version=latest
     :target: https://{{ cookiecutter.project_slug | replace("_", "-") }}.readthedocs.io/en/latest/?badge=latest
     :alt: Documentation Status
 {% endif %}
-{% if cookiecutter.add_codecov == "yes" %}.. image:: https://codecov.io/gh/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/branch/main/graph/badge.svg
-    :target: https://codecov.io/gh/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}
+{% if cookiecutter.add_codecov == "yes" %}.. image:: https://codecov.io/gh/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name }}/branch/main/graph/badge.svg
+    :target: https://codecov.io/gh/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name }}
 {% endif %}
-.. image:: https://results.pre-commit.ci/badge/github/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/main.svg
-    :target: https://results.pre-commit.ci/latest/github/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/main
+.. image:: https://results.pre-commit.ci/badge/github/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name }}/main.svg
+    :target: https://results.pre-commit.ci/latest/github/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name }}/main
     :alt: pre-commit.ci status
 
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg
