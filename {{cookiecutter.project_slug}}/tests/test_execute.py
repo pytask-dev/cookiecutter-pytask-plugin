@@ -37,7 +37,12 @@ def test_pytask_execute_task_setup(monkeypatch, found_ZZZZZ, expectation):
 @pytest.mark.end_to_end
 @pytest.mark.parametrize(
     "depends_on",
-    ["'script.xxxxx'", {"source": "script.xxxxx"}, {0: "script.xxxxx"}, {"script": "script.xxxxx"}],
+    [
+        "'script.xxxxx'",
+        {"source": "script.xxxxx"},
+        {0: "script.xxxxx"},
+        {"script": "script.xxxxx"},
+    ],
 )
 def test_run_xxxxx_script(tmp_path, depends_on):
     task_source = f"""

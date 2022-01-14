@@ -57,7 +57,9 @@ def pytask_collect_task_teardown(session, task):
     """Perform some checks."""
     if get_specific_markers_from_task(task, "xxxxx"):
         source = _get_node_from_dictionary(task.depends_on, "source")
-        if isinstance(source, FilePathNode) and source.value.suffix not in [".xxxxxWHATEVERxxxxx"]:
+        if isinstance(source, FilePathNode) and source.value.suffix not in [
+            ".xxxxxWHATEVERxxxxx"
+        ]:
             raise ValueError(
                 "The first dependency of a YYYYY task must be the script to be executed."
             )
@@ -96,7 +98,9 @@ def _prepare_cmd_options(session, task, args):
     is unique and does not cause any errors when parallelizing the execution.
 
     """
-    source = _get_node_from_dictionary(task.depends_on, session.config["xxxxx_source_key"])
+    source = _get_node_from_dictionary(
+        task.depends_on, session.config["xxxxx_source_key"]
+    )
     return ["ZZZZZ", source.path.as_posix(), *args]
 
 

@@ -12,4 +12,3 @@ them in reverse chronological order. Releases follow `semantic versioning
 ------------------
 
 - :gh:`01` fixes ...
-

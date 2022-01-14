@@ -80,7 +80,7 @@ typing the following on the command line
 
     $ ZZZZZ --help
 
-If an error is shown instead of a help page, you can install YYYYY .... 
+If an error is shown instead of a help page, you can install YYYYY ....
 
 
 Usage
