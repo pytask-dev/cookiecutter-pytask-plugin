@@ -96,6 +96,7 @@ def test_check_conda_environment_creation_and_run_all_checks(cookies):
     result = cookies.bake(
         extra_context={
             "conda_environment_name": "__test__",
+            "make_initial_commit": "yes",
             "create_conda_environment_at_finish": "yes",
         }
     )
