@@ -3,7 +3,7 @@ ignore = ["TC003"]
 
 
 [tool.mypy]
-files = ["{{cookiecutter.__package_name}}", "tests"]
+files = ["tests"]
 check_untyped_defs = true
 disallow_any_generics = true
 disallow_incomplete_defs = true

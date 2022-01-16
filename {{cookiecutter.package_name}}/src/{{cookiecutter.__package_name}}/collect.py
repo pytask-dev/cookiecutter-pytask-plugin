@@ -15,7 +15,7 @@ from _pytask.nodes import PythonFunctionTask
 from _pytask.parametrize import _copy_func
 
 
-def {{ cookiecutter.if_yes_marker_name}}(options: Optional[Union[str, Iterable[str]]] = None):
+def {{ cookiecutter.if_yes_marker_name }}(options: Optional[Union[str, Iterable[str]]] = None):
     """Specify command line options for {{ cookiecutter.if_yes_command_line_tool }}.
 
     Parameters
@@ -29,10 +29,10 @@ def {{ cookiecutter.if_yes_marker_name}}(options: Optional[Union[str, Iterable[s
     return options
 
 
-def run_{{ cookiecutter.if_yes_marker_name}}_script({{ cookiecutter.if_yes_marker_name}}):
+def run_{{ cookiecutter.if_yes_marker_name }}_script({{ cookiecutter.if_yes_marker_name }}):
     """Run an R script."""
-    print("Executing " + " ".join({{ cookiecutter.if_yes_marker_name}}) + ".")  # noqa: T001
-    subprocess.run({{ cookiecutter.if_yes_marker_name}}, check=True)
+    print("Executing " + " ".join({{ cookiecutter.if_yes_marker_name }}) + ".")  # noqa: T001
+    subprocess.run({{ cookiecutter.if_yes_marker_name }}, check=True)
 
 
 @hookimpl
@@ -44,7 +44,7 @@ def pytask_collect_task(session, path, name, obj):
     detect built-ins which is not possible anyway.
 
     """
-    if name.startswith("task_") and callable(obj) and has_marker(obj, "{{ cookiecutter.if_yes_marker_name}}"):
+    if name.startswith("task_") and callable(obj) and has_marker(obj, "{{ cookiecutter.if_yes_marker_name }}"):
         task = PythonFunctionTask.from_path_name_function_session(
             path, name, obj, session
         )
@@ -55,22 +55,22 @@ def pytask_collect_task(session, path, name, obj):
 @hookimpl
 def pytask_collect_task_teardown(session, task):
     """Perform some checks."""
-    if get_specific_markers_from_task(task, "{{ cookiecutter.if_yes_marker_name}}"):
+    if get_specific_markers_from_task(task, "{{ cookiecutter.if_yes_marker_name }}"):
         source = _get_node_from_dictionary(task.depends_on, "source")
         if isinstance(source, FilePathNode) and source.value.suffix not in ["{{ cookiecutter.if_yes_executable_file_ending }}"]:
             raise ValueError(
                 "The first dependency of a {{ cookiecutter.if_yes_command_line_tool }} task must be the script to be executed."
             )
 
-        {{ cookiecutter.if_yes_marker_name}}_function = _copy_func(run_{{ cookiecutter.if_yes_marker_name}}_script)
-        {{ cookiecutter.if_yes_marker_name}}_function.pytaskmark = copy.deepcopy(task.function.pytaskmark)
+        {{ cookiecutter.if_yes_marker_name }}_function = _copy_func(run_{{ cookiecutter.if_yes_marker_name }}_script)
+        {{ cookiecutter.if_yes_marker_name }}_function.pytaskmark = copy.deepcopy(task.function.pytaskmark)
 
         merged_marks = _merge_all_markers(task)
-        args = {{ cookiecutter.if_yes_marker_name}}(*merged_marks.args, **merged_marks.kwargs)
+        args = {{ cookiecutter.if_yes_marker_name }}(*merged_marks.args, **merged_marks.kwargs)
         options = _prepare_cmd_options(session, task, args)
-        {{ cookiecutter.if_yes_marker_name}}_function = functools.partial({{ cookiecutter.if_yes_marker_name}}_function, {{ cookiecutter.if_yes_marker_name}}=options)
+        {{ cookiecutter.if_yes_marker_name }}_function = functools.partial({{ cookiecutter.if_yes_marker_name }}_function, {{ cookiecutter.if_yes_marker_name }}=options)
 
-        task.function = {{ cookiecutter.if_yes_marker_name}}_function
+        task.function = {{ cookiecutter.if_yes_marker_name }}_function
 
 
 def _get_node_from_dictionary(obj, key, fallback=0):
@@ -81,10 +81,10 @@ def _get_node_from_dictionary(obj, key, fallback=0):
 
 
 def _merge_all_markers(task):
-    """Combine all information from markers for the compile {{ cookiecutter.if_yes_marker_name}} function."""
-    {{ cookiecutter.if_yes_marker_name}}_marks = get_specific_markers_from_task(task, "{{ cookiecutter.if_yes_marker_name}}")
-    mark = {{ cookiecutter.if_yes_marker_name}}_marks[0]
-    for mark_ in {{ cookiecutter.if_yes_marker_name}}_marks[1:]:
+    """Combine all information from markers for the compile {{ cookiecutter.if_yes_marker_name }} function."""
+    {{ cookiecutter.if_yes_marker_name }}_marks = get_specific_markers_from_task(task, "{{ cookiecutter.if_yes_marker_name }}")
+    mark = {{ cookiecutter.if_yes_marker_name }}_marks[0]
+    for mark_ in {{ cookiecutter.if_yes_marker_name }}_marks[1:]:
         mark = mark.combined_with(mark_)
     return mark
 
@@ -96,7 +96,7 @@ def _prepare_cmd_options(session, task, args):
     is unique and does not cause any errors when parallelizing the execution.
 
     """
-    source = _get_node_from_dictionary(task.depends_on, session.config["{{ cookiecutter.if_yes_marker_name}}_source_key"])
+    source = _get_node_from_dictionary(task.depends_on, session.config["{{ cookiecutter.if_yes_marker_name }}_source_key"])
     return ["{{ cookiecutter.if_yes_command_line_tool }}", source.path.as_posix(), *args]
 
 

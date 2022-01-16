@@ -1,3 +1,5 @@
+exclude: "{{cookiecutter.package_name}}"
+
 repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.0.1
@@ -8,7 +10,6 @@ repos:
     -   id: check-merge-conflict
     -   id: check-vcs-permalinks
     -   id: check-yaml
-        exclude: "{{cookiecutter.__package_name}}/environment.yml"
     -   id: debug-statements
     -   id: end-of-file-fixer
     -   id: fix-byte-order-marker
@@ -38,10 +39,6 @@ repos:
     rev: v2.6.0
     hooks:
     -   id: reorder-python-imports
--   repo: https://github.com/asottile/setup-cfg-fmt
-    rev: v1.20.0
-    hooks:
-    -   id: setup-cfg-fmt
 -   repo: https://github.com/psf/black
     rev: 21.12b0
     hooks:
@@ -79,8 +76,7 @@ repos:
     rev: 1.5.0
     hooks:
     -   id: interrogate
-        args: [-v, --fail-under=40, "{{cookiecutter.__package_name}}"]
-        pass_filenames: false
+        args: [-v, --fail-under=40]
 -   repo: https://github.com/codespell-project/codespell
     rev: v2.1.0
     hooks:
