@@ -3,24 +3,32 @@ import re
 
 MODULE_REGEX = r"^[-_a-zA-Z0-9]*$"
 ENVIRON_REGEX = r"^[-_a-zA-Z0-9]*$"
-PYTHONVERSION_REGEX = r"^(3)\.[6-9]$"
+PYTHONVERSION_REGEX = r"^(3)\.(7|8|9|10)$"
 
 EXCEPTION_MSG_MODULE_NAME = """
-ERROR: The project slug ({module_name}) is not a valid Python module name.
+ERROR: The project slug ({}) is not a valid Python module name.
 Please do not use anything other than letters, numbers, underscores '_',
 and minus signs '-'.
 """
 
 EXCEPTION_MSG_ENVIRON_NAME = """
-ERROR: The project slug ({environment_name}) is not a valid conda environment name.
+ERROR: The project slug ({}) is not a valid conda environment name.
 Please do not use anything other than letters, numbers, underscores '_',
 and minus signs '-'.
 """
 
 
+_ = """{{ cookiecutter.update(
+    {
+        "__package_name":
+        cookiecutter.package_name|lower|replace(' ', '_')|replace('-', '_'),
+    }
+)}}"""
+
+
 def main():
     """Apply pre-generation hooks."""
-    module_name = "{{ cookiecutter.project_slug}}"
+    module_name = "{{ cookiecutter.__package_name }}"
 
     if not re.match(MODULE_REGEX, module_name):
         raise ValueError(EXCEPTION_MSG_MODULE_NAME.format(module_name))
@@ -33,7 +41,7 @@ def main():
     python_version = "{{ cookiecutter.python_version }}"
 
     if not re.match(PYTHONVERSION_REGEX, python_version):
-        raise ValueError("ERROR: The python version must be >= 3.6")  # noqa: TC003
+        raise ValueError("ERROR: The python version must be >= 3.7")  # noqa: TC003
 
 
 if __name__ == "__main__":

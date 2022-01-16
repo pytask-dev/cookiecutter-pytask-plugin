@@ -47,7 +47,7 @@ Then, set up the template with
 FAQ
 ---
 
-Q: Why are the source files nested in ``src/<project_slug>``?
+Q: Why are the source files nested in ``src/<{{ cookiecutter.__package_name }}>``?
 
 A: This is called the src layout and the advantages are discussed in this `article by
 Hynek Schlawack <https://hynek.me/articles/testing-packaging/>`_.

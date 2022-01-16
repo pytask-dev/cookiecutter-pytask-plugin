@@ -16,4 +16,4 @@ __pycache__
 
 build
 dist
-src/{{ cookiecutter.project_slug }}/_version.py
+src/{{ cookiecutter.__package_name }}/_version.py

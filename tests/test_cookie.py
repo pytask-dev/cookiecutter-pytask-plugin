@@ -11,7 +11,10 @@ def test_bake_project(cookies):
     python_version = f"{major}.{minor}"
 
     result = cookies.bake(
-        extra_context={"project_slug": "helloworld", "python_version": python_version}
+        extra_context={
+            "__package_name": "helloworld",
+            "python_version": python_version,
+        }
     )
 
     assert result.exit_code == 0
