@@ -7,7 +7,7 @@ from {{ cookiecutter.__package_name }} import parametrize
 {% endif %}
 
 @hookimpl
-def pytask_add_hooks(pm):
+def pytask_add_hooks(pm):  # noqa: U100
     """Register hook implementations."""
     {% if cookiecutter.keep_code_for_wrapping_subprocess_run == 'yes' %}pm.register(collect)
     pm.register(config)

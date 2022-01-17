@@ -111,7 +111,12 @@ def test_check_conda_environment_creation_and_run_all_checks(cookies):
             ("git", "checkout", "-b", "test"), cwd=result.project_path, check=True
         )
 
-        # Do not check exit code on Windows since something weird happens.
+        # Check linting, but not on the first try since formatters fix stuff.
+        subprocess.run(
+            ("conda", "run", "-n", "__test__", "pre-commit", "run", "--all-files"),
+            cwd=result.project_path,
+            check=False,
+        )
         subprocess.run(
             ("conda", "run", "-n", "__test__", "pre-commit", "run", "--all-files"),
             cwd=result.project_path,

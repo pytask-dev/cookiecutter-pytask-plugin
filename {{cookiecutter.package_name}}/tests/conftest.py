@@ -1,4 +1,4 @@
-import shutil
+{% if cookiecutter.keep_code_for_wrapping_subprocess_run == 'yes' %}import shutil{% endif %}
 
 import pytest
 from click.testing import CliRunner
