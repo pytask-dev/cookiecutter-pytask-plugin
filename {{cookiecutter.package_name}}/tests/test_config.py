@@ -6,4 +6,4 @@ from pytask import main
 def test_marker_is_configured(tmp_path):
     session = main({"paths": tmp_path})
 
-    assert "xxxxx" in session.config["markers"]
+    assert "{{ cookiecutter.if_yes_marker_name }}" in session.config["markers"]

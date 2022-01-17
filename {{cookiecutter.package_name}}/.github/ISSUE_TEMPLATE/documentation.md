@@ -9,7 +9,10 @@ labels: "documentation"
 
 #### Location of the documentation
 
-Provide the location of the documentation, e.g. an URL to a section of the readme.
+Provide the location of the documentation, e.g. an URL of the documentation.
+
+**Note**: You can check the latest versions of the docs on `main`
+[here](https://{{ cookiecutter.package_name }}.readthedocs.io/en/latest).
 
 #### Documentation problem
 

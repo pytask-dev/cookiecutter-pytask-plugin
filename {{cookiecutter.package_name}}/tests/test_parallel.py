@@ -4,7 +4,7 @@ import textwrap
 import time
 
 import pytest
-from conftest import needs_ZZZZZ
+from conftest import needs_{{ cookiecutter.if_yes_command_line_tool }}
 from pytask import cli
 
 try:
@@ -20,7 +20,7 @@ pytestmark = pytest.mark.skipif(
 )
 
 
-@needs_ZZZZZ
+@needs_{{ cookiecutter.if_yes_command_line_tool }}
 @pytest.mark.end_to_end
 def test_parallel_parametrization_over_source_files(runner, tmp_path):
     """Test parallelization over source files.
@@ -33,26 +33,26 @@ def test_parallel_parametrization_over_source_files(runner, tmp_path):
     source = """
     import pytask
 
-    @pytask.mark.xxxxx
+    @pytask.mark.{{ cookiecutter.if_yes_marker_name }}
     @pytask.mark.parametrize(
-        "depends_on, produces", [("script_1.xxxxx", "1.csv"), ("script_2.xxxxx", "2.csv")]
+        "depends_on, produces", [("script_1{{ cookiecutter.if_yes_executable_file_ending }}", "1.csv"), ("script_2{{ cookiecutter.if_yes_executable_file_ending }}", "2.csv")]
     )
-    def task_execute_ZZZZZ():
+    def task_execute_{{ cookiecutter.if_yes_command_line_tool }}():
         pass
     """
     tmp_path.joinpath("task_dummy.py").write_text(textwrap.dedent(source))
 
-    xxxxx_script = """FIXME FOR YOUR LANGUAGE
+    {{ cookiecutter.if_yes_marker_name }}_script = """FIXME FOR YOUR LANGUAGE
     Sys.sleep(2)
     saveRDS(1, file=paste0(1, ".csv"))
     """
-    tmp_path.joinpath("script_1.r").write_text(textwrap.dedent(xxxxx_script))
+    tmp_path.joinpath("script_1.r").write_text(textwrap.dedent({{ cookiecutter.if_yes_marker_name }}_script))
 
-    r_script = """
+    {{ cookiecutter.if_yes_marker_name }}_script = """
     Sys.sleep(2)
     saveRDS(2, file=paste0(2, ".csv"))
     """
-    tmp_path.joinpath("script_2.xxxxx").write_text(textwrap.dedent(xxxxx_script))
+    tmp_path.joinpath("script_2{{ cookiecutter.if_yes_executable_file_ending }}").write_text(textwrap.dedent({{ cookiecutter.if_yes_marker_name }}_script))
 
     start = time.time()
     result = runner.invoke(cli, [tmp_path.as_posix()])
@@ -70,7 +70,7 @@ def test_parallel_parametrization_over_source_files(runner, tmp_path):
     assert duration_parallel < duration_normal
 
 
-@needs_ZZZZZ
+@needs_{{ cookiecutter.if_yes_command_line_tool }}
 @pytest.mark.end_to_end
 def test_parallel_parametrization_over_source_file(runner, tmp_path):
     """Test parallelization over the same source file.
@@ -86,23 +86,23 @@ def test_parallel_parametrization_over_source_file(runner, tmp_path):
 
     SRC = Path(__file__).parent
 
-    @pytask.mark.depends_on("script.xxxxx")
-    @pytask.mark.parametrize("produces, xxxxx", [
+    @pytask.mark.depends_on("script{{ cookiecutter.if_yes_executable_file_ending }}")
+    @pytask.mark.parametrize("produces, {{ cookiecutter.if_yes_marker_name }}", [
         (SRC / "0.csv", (1, SRC / "0.csv")), (SRC / "1.csv", (1, SRC / "1.csv"))
     ])
-    def task_execute_xxxxx_script():
+    def task_execute_{{ cookiecutter.if_yes_marker_name }}_script():
         pass
     """
     tmp_path.joinpath("task_dummy.py").write_text(textwrap.dedent(source))
 
-    xxxxx_script = """FIXME FOR YOUR LANGUAGE
+    {{ cookiecutter.if_yes_marker_name }}_script = """FIXME FOR YOUR LANGUAGE
     Sys.sleep(2)
     args <- commandArgs(trailingOnly=TRUE)
     number <- args[1]
     produces <- args[2]
     saveRDS(number, file=produces)
     """
-    tmp_path.joinpath("script.xxxxx").write_text(textwrap.dedent(xxxxx_script))
+    tmp_path.joinpath("script{{ cookiecutter.if_yes_executable_file_ending }}").write_text(textwrap.dedent({{ cookiecutter.if_yes_marker_name }}_script))
 
     start = time.time()
     result = runner.invoke(cli, [tmp_path.as_posix()])
