@@ -1,6 +1,10 @@
 {{ cookiecutter.package_name }}
 {% for _ in cookiecutter.package_name %}={% endfor %}
 
+.. image:: https://img.shields.io/pypi/v/{{ cookiecutter.package_name }}?color=blue
+    :alt: PyPI
+    :target: https://pypi.org/project/{{ cookiecutter.package_name }}
+
 .. image:: https://img.shields.io/pypi/pyversions/{{ cookiecutter.package_name }}
     :alt: PyPI - Python Version
     :target: https://pypi.org/project/{{ cookiecutter.package_name }}
