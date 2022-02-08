@@ -22,7 +22,7 @@ cookiecutter-pytask-plugin
     :target: https://github.com/psf/black
 
 
-This repository contains a minimal cookiecutter template for a project with `pytask
+This repository contains a minimal cookiecutter template for a plugin for `pytask
 <https://github.com/pytask-dev/pytask>`_ .
 
 
@@ -37,7 +37,7 @@ First, install cookiecutter.
 
     $ conda install -c conda-forge cookiecutter
 
-Then, set up the template with
+Then, set up the template for the new plugin with
 
 .. code-block:: console
 
@@ -51,6 +51,3 @@ Q: Why are the source files nested in ``src/<{{ cookiecutter.__package_name }}>`
 
 A: This is called the src layout and the advantages are discussed in this `article by
 Hynek Schlawack <https://hynek.me/articles/testing-packaging/>`_.
-
-Although the article discusses the src layout in terms of Python packages, it is also
-beneficial to structure a project the same way.
