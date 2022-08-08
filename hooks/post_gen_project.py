@@ -52,7 +52,9 @@ def main():
     if "{{ cookiecutter.add_readthedocs }}" == "no":
         remove_file(project_path, ".readthedocs.yaml")
 
-    subprocess.run(("git", "init", "--initial-branch", "main"), check=True, capture_output=True)
+    subprocess.run(
+        ("git", "init", "--initial-branch", "main"), check=True, capture_output=True
+    )
 
     if "{{ cookiecutter.make_initial_commit }}" == "yes":
         # Create an initial commit on the main branch and restore global default name.
