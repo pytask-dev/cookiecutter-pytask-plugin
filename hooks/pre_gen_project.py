@@ -5,7 +5,7 @@ import re
 
 MODULE_REGEX = r"^[-_a-zA-Z0-9]*$"
 ENVIRON_REGEX = r"^[-_a-zA-Z0-9]*$"
-PYTHONVERSION_REGEX = r"^(3)\.(7|8|9|10)$"
+PYTHONVERSION_REGEX = r"^(3\.(1[0-9]|[7-9])(\.[0-9]{1,2})?)$"
 
 EXCEPTION_MSG_MODULE_NAME = """
 ERROR: The project slug ({}) is not a valid Python module name.
