@@ -1,3 +1,6 @@
+"""This module contains the main namespace of the package."""
+from __future__ import annotations
+
 try:
     from ._version import version as __version__
 except ImportError:

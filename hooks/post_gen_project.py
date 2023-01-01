@@ -4,40 +4,26 @@ from __future__ import annotations
 import shutil
 import subprocess
 import warnings
+from contextlib import suppress
 from pathlib import Path
 
 
-def remove_file(*filepath):
+def remove_file(*filepath: str | Path) -> None:
     """Remove a file."""
-    try:
+    with suppress(FileNotFoundError):
         Path(*filepath).unlink()
-    except FileNotFoundError:
-        pass
 
 
-def remove_directory(*filepath):
+def remove_directory(*filepath: str | Path) -> None:
     """Remove a directory."""
-    try:
+    with suppress(FileNotFoundError):
         path = Path(*filepath)
         shutil.rmtree(path)
-    except FileNotFoundError:
-        pass
 
 
-def main():
+def main() -> None:
     """Apply post generation hooks."""
     project_path = Path.cwd()
-
-    if "{{ cookiecutter.keep_code_for_wrapping_subprocess_run }}" == "no":
-        package_directory = project_path / "src" / "{{ cookiecutter.__package_name }}"
-        test_directory = project_path / "tests"
-        for file in ("collect.py", "config.py", "execute.py", "parametrize.py"):
-            remove_file(package_directory, file)
-            remove_file(test_directory, "test_" + file)
-        remove_file(test_directory, "test_parallel.py")
-
-    if "{{ cookiecutter.create_changelog }}" == "no":
-        remove_file(project_path, "CHANGES.rst")
 
     if "{{ cookiecutter.open_source_license }}" == "Not open source":
         remove_file(project_path, "LICENSE")
@@ -74,18 +60,30 @@ def main():
         )
 
     if "{{ cookiecutter.create_conda_environment_at_finish }}" == "yes":
+
         if shutil.which("mamba") is not None:
             conda_exe = shutil.which("mamba")
         else:
             conda_exe = shutil.which("conda")
 
-        if conda_exe is None:
+        if conda_exe:
+            subprocess.run(
+                (
+                    conda_exe,
+                    "env",
+                    "create",
+                    "-f",
+                    (project_path / "environment.yml").absolute().as_posix(),
+                    "--force",
+                ),
+                check=True,
+                capture_output=True,
+            )
+        else:
             warnings.warn(
                 "conda environment could not be created since no conda or mamba "
                 "executable was found."
             )
-        else:
-            subprocess.run((conda_exe, "env", "create"), check=True)
 
 
 if __name__ == "__main__":

@@ -30,7 +30,7 @@ def test_remove_readthedocs(cookies):
     result = cookies.bake(extra_context={"add_readthedocs": "no"})
 
     rtd_config = result.project_path.joinpath(".readthedocs.yaml")
-    readme = result.project_path.joinpath("README.rst").read_text()
+    readme = result.project_path.joinpath("README.md").read_text()
 
     assert result.exit_code == 0
     assert result.exception is None
@@ -44,7 +44,7 @@ def test_remove_github_actions(cookies):
     result = cookies.bake(extra_context={"add_github_actions": "no"})
 
     ga_config = result.project_path.joinpath(".github", "workflows", "main.yml")
-    readme = result.project_path.joinpath("README.rst").read_text()
+    readme = result.project_path.joinpath("README.md").read_text()
 
     assert result.exit_code == 0
     assert result.exception is None
@@ -77,18 +77,6 @@ def test_remove_license(cookies):
     assert result.exception is None
 
     assert not license_.exists()
-
-
-@pytest.mark.end_to_end
-def test_remove_changes(cookies):
-    result = cookies.bake(extra_context={"create_changelog": "no"})
-
-    changes = result.project_path.joinpath("CHANGES.rst")
-
-    assert result.exit_code == 0
-    assert result.exception is None
-
-    assert not changes.exists()
 
 
 @pytest.mark.end_to_end

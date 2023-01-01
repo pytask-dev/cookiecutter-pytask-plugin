@@ -1,8 +1,11 @@
-exclude: "{{cookiecutter.package_name}}"
+exclude: |
+    (?x)^(
+        {{cookiecutter.package_name}}/tests/test_import.py
+    )$
 
 repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.1.0
+    rev: v4.4.0
     hooks:
     -   id: check-added-large-files
         args: ['--maxkb=25']
@@ -10,6 +13,11 @@ repos:
     -   id: check-merge-conflict
     -   id: check-vcs-permalinks
     -   id: check-yaml
+        exclude:  |
+            (?x)^(
+                {{cookiecutter.package_name}}/environment.yml|
+                {{cookiecutter.package_name}}/.pre-commit-config.yaml
+            )$
     -   id: debug-statements
     -   id: end-of-file-fixer
     -   id: fix-byte-order-marker
@@ -25,73 +33,87 @@ repos:
     -   id: python-no-eval
     -   id: python-no-log-warn
     -   id: python-use-type-annotations
-    -   id: rst-backticks
-    -   id: rst-directive-colons
-    -   id: rst-inline-touching-normal
     -   id: text-unicode-replacement-char
 -   repo: https://github.com/asottile/pyupgrade
-    rev: v2.31.0
+    rev: v3.3.1
     hooks:
     -   id: pyupgrade
         args: [--py37-plus]
 -   repo: https://github.com/asottile/reorder_python_imports
-    rev: v2.7.1
+    rev: v3.9.0
     hooks:
     -   id: reorder-python-imports
         args: [--py37-plus, --add-import, 'from __future__ import annotations']
+-   repo: https://github.com/asottile/setup-cfg-fmt
+    rev: v2.2.0
+    hooks:
+    -   id: setup-cfg-fmt
+        exclude:  |
+            (?x)^(
+                {{cookiecutter.package_name}}/setup.cfg
+            )$
 -   repo: https://github.com/psf/black
-    rev: 22.6.0
+    rev: 22.12.0
     hooks:
     -   id: black
 -   repo: https://github.com/myint/docformatter
-    rev: v1.3.1
+    rev: v1.5.1
     hooks:
     -   id: docformatter
         args: [--in-place, --wrap-summaries, "88", --wrap-descriptions, "88", --blank]
--   repo: https://github.com/asottile/blacken-docs
-    rev: v1.12.1
+-   repo: https://github.com/charliermarsh/ruff-pre-commit
+    rev: v0.0.205
     hooks:
-    -   id: blacken-docs
-        additional_dependencies: [black]
--   repo: https://github.com/PyCQA/flake8
-    rev: 4.0.1
+      - id: ruff
+        args: [hooks, tests]
+        pass_filenames: false
+-   repo: https://github.com/dosisod/refurb
+    rev: v1.9.1
     hooks:
-    -   id: flake8
-        additional_dependencies: [
-            flake8-alfred,
-            flake8-bugbear,
-            flake8-builtins,
-            flake8-comprehensions,
-            flake8-docstrings,
-            flake8-eradicate,
-            flake8-print,
-            flake8-pytest-style,
-            flake8-todo,
-            flake8-typing-imports,
-            flake8-unused-arguments,
-            pep8-naming,
-            pydocstyle,
-            Pygments,
-        ]
--   repo: https://github.com/PyCQA/doc8
-    rev: 0.10.1
-    hooks:
-    -   id: doc8
+    -   id: refurb
+        args: [--ignore, FURB126]
+        exclude: ({{cookiecutter.package_name}})
 -   repo: https://github.com/econchick/interrogate
     rev: 1.5.0
     hooks:
     -   id: interrogate
         args: [-v, --fail-under=40]
+-   repo: https://github.com/executablebooks/mdformat
+    rev: 0.7.16
+    hooks:
+    -   id: mdformat
+        additional_dependencies: [
+            mdformat-gfm,
+            mdformat-black,
+        ]
+        args: [--wrap, "88"]
+        files: (README\.md)
+        exclude: |
+          (?x)^(
+              {{cookiecutter.package_name}}/README.md
+          )$
+-   repo: https://github.com/executablebooks/mdformat
+    rev: 0.7.16
+    hooks:
+    -   id: mdformat
+        additional_dependencies: [
+            mdformat-myst,
+            mdformat-black,
+        ]
+        args: [--wrap, "88"]
+        files: (docs/.)
+        # Exclude files with admonitions.
+        # exclude: |
+        #     (?x)^(
+        #         path/to/file.py
+        #     )$
 -   repo: https://github.com/codespell-project/codespell
-    rev: v2.1.0
+    rev: v2.2.2
     hooks:
     -   id: codespell
--   repo: https://github.com/guilatrova/tryceratops
-    rev: v1.0.1
-    hooks:
-    -   id: tryceratops
+        additional_dependencies: [tomli]
 -   repo: https://github.com/pre-commit/mirrors-mypy
-    rev: 'v0.931'
+    rev: 'v0.991'
     hooks:
     -   id: mypy
         args: [
@@ -99,7 +121,6 @@ repos:
             --ignore-missing-imports,
         ]
         pass_filenames: false
-        language_version: "3.9"
 -   repo: meta
     hooks:
     -   id: check-hooks-apply
