@@ -61,7 +61,8 @@ repos:
     rev: 1.5.0
     hooks:
     -   id: interrogate
-        args: [-v, --fail-under=40, src, tests]
+        args: [-v, --fail-under=75]
+        exclude: ^(tests/)
 -   repo: https://github.com/executablebooks/mdformat
     rev: 0.7.16
     hooks:
@@ -72,21 +73,21 @@ repos:
         ]
         args: [--wrap, "88"]
         files: (README\.md)
--   repo: https://github.com/executablebooks/mdformat
-    rev: 0.7.16
-    hooks:
-    -   id: mdformat
-        additional_dependencies: [
-            mdformat-myst,
-            mdformat-black,
-        ]
-        args: [--wrap, "88"]
-        files: (docs/.)
-        # Exclude files with admonitions.
-        # exclude: |
-        #     (?x)^(
-        #         path/to/file.py
-        #     )$
+# -   repo: https://github.com/executablebooks/mdformat
+#     rev: 0.7.16
+#     hooks:
+#     -   id: mdformat
+#         additional_dependencies: [
+#             mdformat-myst,
+#             mdformat-black,
+#         ]
+#         args: [--wrap, "88"]
+#         files: (docs/.)
+#         # Exclude files with admonitions.
+#         exclude: |
+#             (?x)^(
+#                 path/to/file.py
+#             )$
 -   repo: https://github.com/pre-commit/mirrors-mypy
     rev: 'v0.991'
     hooks:

@@ -5,5 +5,5 @@ exclude *.yml
 exclude *.yaml
 exclude *.ini
 
-include README.md
+include *.md
 include LICENSE
