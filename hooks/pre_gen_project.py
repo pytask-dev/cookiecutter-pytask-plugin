@@ -32,7 +32,7 @@ def main() -> None:
     module_name = "{{ cookiecutter.package_name }}"
 
     if not re.match(MODULE_REGEX, module_name):
-        raise ValueError(EXCEPTION_MSG_MODULE_NAME.format(module_name))
+        raise ValueError(EXCEPTION_MSG_MODULE_NAME.format(module_name=module_name))
 
     environment_name = "{{ cookiecutter.conda_environment_name }}"
 
