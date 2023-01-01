@@ -28,17 +28,6 @@ def main():
     """Apply post generation hooks."""
     project_path = Path.cwd()
 
-    if "{{ cookiecutter.keep_code_for_wrapping_subprocess_run }}" == "no":
-        package_directory = project_path / "src" / "{{ cookiecutter.__package_name }}"
-        test_directory = project_path / "tests"
-        for file in ("collect.py", "config.py", "execute.py", "parametrize.py"):
-            remove_file(package_directory, file)
-            remove_file(test_directory, "test_" + file)
-        remove_file(test_directory, "test_parallel.py")
-
-    if "{{ cookiecutter.create_changelog }}" == "no":
-        remove_file(project_path, "CHANGES.rst")
-
     if "{{ cookiecutter.open_source_license }}" == "Not open source":
         remove_file(project_path, "LICENSE")
 

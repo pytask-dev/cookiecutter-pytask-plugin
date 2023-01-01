@@ -11,13 +11,12 @@ dependencies:
   - toml
 
   # Package dependencies
-  - pytask >=0.1.7
-  - pytask-parallel >=0.1.1
+  - pytask >=0.2
+  - pytask-parallel >=0.2
 
   # Misc
   - black
   - jupyterlab
-  - pdbpp
   - pre-commit
   - pytest-cov
   - pytest-xdist
