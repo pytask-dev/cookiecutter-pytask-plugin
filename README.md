@@ -7,7 +7,8 @@
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/pytask-dev/cookiecutter-pytask-plugin/main.svg)](https://results.pre-commit.ci/latest/github/pytask-dev/cookiecutter-pytask-plugin/main)
 [![image](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-This repository contains a minimal cookiecutter template for a plugin for [pytask](https://github.com/pytask-dev/pytask) .
+This repository contains a minimal cookiecutter template for a plugin for
+[pytask](https://github.com/pytask-dev/pytask) .
 
 ## Usage
 
@@ -29,6 +30,6 @@ $ cookiecutter https://github.com/pytask-dev/cookiecutter-pytask-plugin
 
 Q: Why are the source files nested in `src/<{{ cookiecutter.__package_name }}>`?
 
-A: This is called the src layout. This [article by Hynek
-Schlawack](https://hynek.me/articles/testing-packaging/) discusses the advantages of
-this layout in detail.
+A: This is called the src layout. This
+[article by Hynek Schlawack](https://hynek.me/articles/testing-packaging/) discusses the
+advantages of this layout in detail.

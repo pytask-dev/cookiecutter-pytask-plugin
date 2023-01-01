@@ -13,6 +13,11 @@ repos:
     -   id: check-merge-conflict
     -   id: check-vcs-permalinks
     -   id: check-yaml
+        exclude:  |
+            (?x)^(
+                {{cookiecutter.package_name}}/environment.yml|
+                {{cookiecutter.package_name}}/.pre-commit-config.yaml
+            )$
     -   id: debug-statements
     -   id: end-of-file-fixer
     -   id: fix-byte-order-marker
@@ -28,9 +33,6 @@ repos:
     -   id: python-no-eval
     -   id: python-no-log-warn
     -   id: python-use-type-annotations
-    -   id: rst-backticks
-    -   id: rst-directive-colons
-    -   id: rst-inline-touching-normal
     -   id: text-unicode-replacement-char
 -   repo: https://github.com/asottile/pyupgrade
     rev: v3.3.1
