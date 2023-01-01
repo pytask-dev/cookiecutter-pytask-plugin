@@ -6,7 +6,6 @@ requires = ["setuptools>=45", "wheel", "setuptools_scm[toml]>=6.0"]
 write_to = "src/{{ cookiecutter.__package_name }}/_version.py"
 
 
-{% if cookiecutter.add_mypy == "yes" %}
 [tool.mypy]
 files = ["src", "tests"]
 check_untyped_defs = true
@@ -22,7 +21,6 @@ warn_unused_ignores = true
 module = "tests.*"
 disallow_untyped_defs = false
 ignore_errors = true
-{% endif %}
 
 
 [tool.pytask.ini_options]

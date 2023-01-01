@@ -27,9 +27,17 @@ ERROR: The python version must be >= {min_python_version}, got {python_version}.
 """
 
 
+_ = """{{ cookiecutter.update(
+    {
+        "__package_name":
+        cookiecutter.package_name|lower|replace(' ', '_')|replace('-', '_'),
+    }
+)}}"""
+
+
 def main() -> None:
     """Apply pre-generation hooks."""
-    module_name = "{{ cookiecutter.package_name }}"
+    module_name = "{{ cookiecutter.__package_name }}"
 
     if not re.match(MODULE_REGEX, module_name):
         raise ValueError(EXCEPTION_MSG_MODULE_NAME.format(module_name=module_name))
