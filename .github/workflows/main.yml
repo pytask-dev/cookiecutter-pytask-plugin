@@ -61,13 +61,16 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - uses: conda-incubator/setup-miniconda@v2
+      - uses: mamba-org/provision-with-micromamba@main
         with:
-          auto-update-conda: false
-
-      - name: Install core dependencies.
-        shell: bash -l {0}
-        run: mamba install -c conda-forge tox-conda
+          environment-file: false
+          environment-name: gha-docs
+          channels: conda-forge,nodefaults
+          extra-specs: |
+            python=3.11
+            mamba
+            tox-conda
+          cache-downloads: true
 
       - name: Build docs
         shell: bash -l {0}
