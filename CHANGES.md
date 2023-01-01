@@ -5,7 +5,7 @@ in reverse chronological order.
 
 ## 1.2.0 - 2023-xx-xx
 
-- {pull}`` modernizes the template.
+- {pull}`10` modernizes the template.
 
 ## 1.1.0 - 2022-02-08
 
