@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-import {{ cookiecutter.package_name }}
+import {{ cookiecutter.__package_name }}
 
 
 def test_import():
-    assert hasattr({{ cookiecutter.package_name }}, "__version__")
+    assert hasattr({{ cookiecutter.__package_name }}, "__version__")
