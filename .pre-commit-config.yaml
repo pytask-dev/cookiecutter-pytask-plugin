@@ -34,11 +34,6 @@ repos:
     -   id: python-no-log-warn
     -   id: python-use-type-annotations
     -   id: text-unicode-replacement-char
--   repo: https://github.com/asottile/pyupgrade
-    rev: v3.3.1
-    hooks:
-    -   id: pyupgrade
-        args: [--py37-plus]
 -   repo: https://github.com/asottile/reorder_python_imports
     rev: v3.9.0
     hooks:
@@ -56,13 +51,13 @@ repos:
     rev: 22.12.0
     hooks:
     -   id: black
--   repo: https://github.com/myint/docformatter
+-   repo: https://github.com/PyCQA/docformatter
     rev: v1.5.1
     hooks:
     -   id: docformatter
         args: [--in-place, --wrap-summaries, "88", --wrap-descriptions, "88", --blank]
 -   repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: v0.0.205
+    rev: v0.0.212
     hooks:
       - id: ruff
         args: [hooks, tests]
