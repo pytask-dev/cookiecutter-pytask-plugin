@@ -52,8 +52,8 @@ def main() -> None:
     if not re.match(PYTHONVERSION_REGEX, python_version):
         raise ValueError(
             EXCEPTION_MSG_PYTHONVERSION.format(
-                min_python_version=PYTHONVERSION_MIN, python_version=python_version
-            )
+                min_python_version=PYTHONVERSION_MIN, python_version=python_version,
+            ),
         )
 
 
