@@ -16,7 +16,7 @@ def test_bake_project(cookies):
         extra_context={
             "package_name": "pytask-matlab",
             "python_version": python_version,
-        },
+        }
     )
 
     assert result.exit_code == 0
@@ -88,7 +88,7 @@ def test_check_conda_environment_creation_and_run_all_checks(cookies):
             "conda_environment_name": "__test__",
             "make_initial_commit": "yes",
             "create_conda_environment_at_finish": "yes",
-        },
+        }
     )
 
     assert result.exit_code == 0
@@ -98,7 +98,7 @@ def test_check_conda_environment_creation_and_run_all_checks(cookies):
         # Switch branch before pre-commit because otherwise failure because on main
         # branch.
         subprocess.run(
-            ("git", "checkout", "-b", "test"), cwd=result.project_path, check=True,
+            ("git", "checkout", "-b", "test"), cwd=result.project_path, check=True
         )
 
         # Check linting, but not on the first try since formatters fix stuff.
