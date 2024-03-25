@@ -1,4 +1,5 @@
 """This module contains hooks which are executed after the template is rendered."""
+
 from __future__ import annotations
 
 import shutil
