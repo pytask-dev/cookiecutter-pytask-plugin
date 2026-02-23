@@ -7,7 +7,7 @@ import sys
 import pytest
 
 
-@pytest.mark.end_to_end()
+@pytest.mark.end_to_end
 def test_bake_project(cookies):
     major, minor = sys.version_info[:2]
     python_version = f"{major}.{minor}"
@@ -25,7 +25,7 @@ def test_bake_project(cookies):
     assert result.project_path.is_dir()
 
 
-@pytest.mark.end_to_end()
+@pytest.mark.end_to_end
 def test_remove_readthedocs(cookies):
     result = cookies.bake(extra_context={"add_readthedocs": "no"})
 
@@ -39,7 +39,7 @@ def test_remove_readthedocs(cookies):
     assert "readthedocs" not in readme
 
 
-@pytest.mark.end_to_end()
+@pytest.mark.end_to_end
 def test_remove_github_actions(cookies):
     result = cookies.bake(extra_context={"add_github_actions": "no"})
 
@@ -53,7 +53,7 @@ def test_remove_github_actions(cookies):
     assert "github/workflow/status" not in readme
 
 
-@pytest.mark.end_to_end()
+@pytest.mark.end_to_end
 def test_remove_tox(cookies):
     result = cookies.bake(extra_context={"add_tox": "no"})
 
@@ -67,7 +67,7 @@ def test_remove_tox(cookies):
     assert not tox.exists()
 
 
-@pytest.mark.end_to_end()
+@pytest.mark.end_to_end
 def test_remove_license(cookies):
     result = cookies.bake(extra_context={"open_source_license": "Not open source"})
 
@@ -79,7 +79,7 @@ def test_remove_license(cookies):
     assert not license_.exists()
 
 
-@pytest.mark.end_to_end()
+@pytest.mark.end_to_end
 @pytest.mark.skipif(os.environ.get("CI") is None, reason="Run only in CI.")
 def test_check_conda_environment_creation_and_run_all_checks(cookies):
     """Test that the conda environment is created and pre-commit passes."""
