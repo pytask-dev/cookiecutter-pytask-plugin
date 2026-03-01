@@ -1,9 +1,9 @@
 """This module contains hooks which are executed after the template is rendered."""
+
 from __future__ import annotations
 
 import shutil
 import subprocess
-import warnings
 from contextlib import suppress
 from pathlib import Path
 
@@ -27,10 +27,6 @@ def main() -> None:
 
     if "{{ cookiecutter.open_source_license }}" == "Not open source":
         remove_file(project_path, "LICENSE")
-
-    if "{{ cookiecutter.add_tox }}" == "no":
-        remove_directory(project_path, ".github", "workflows")
-        remove_file("tox.ini")
 
     if "{{ cookiecutter.add_github_actions }}" == "no":
         remove_directory(project_path, ".github", "workflows")
@@ -58,31 +54,6 @@ def main() -> None:
             check=True,
             capture_output=True,
         )
-
-    if "{{ cookiecutter.create_conda_environment_at_finish }}" == "yes":
-        if shutil.which("mamba") is not None:
-            conda_exe = shutil.which("mamba")
-        else:
-            conda_exe = shutil.which("conda")
-
-        if conda_exe:
-            subprocess.run(
-                (
-                    conda_exe,
-                    "env",
-                    "create",
-                    "-f",
-                    (project_path / "environment.yml").absolute().as_posix(),
-                    "--force",
-                ),
-                check=True,
-                capture_output=True,
-            )
-        else:
-            warnings.warn(
-                "conda environment could not be created since no conda or mamba "
-                "executable was found."
-            )
 
 
 if __name__ == "__main__":

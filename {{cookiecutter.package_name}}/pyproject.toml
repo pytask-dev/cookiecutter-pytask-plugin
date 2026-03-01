@@ -6,6 +6,28 @@ build-backend = "setuptools.build_meta"
 [tool.setuptools_scm]
 write_to = "src/{{ cookiecutter.__package_name }}/_version.py"
 
+[dependency-groups]
+docs = [
+    "furo",
+    "ipython",
+    "myst-parser",
+    "nbsphinx",
+    "sphinx",
+    "sphinx-click",
+    "sphinx-copybutton",
+    "sphinx-design>=0.3",
+    "sphinx-toolbox",
+    "sphinxext-opengraph",
+]
+test = [
+    "pytest",
+    "pytest-cov",
+    "pytest-xdist",
+    "pytask-parallel>=0.2",
+]
+typing = ["mypy"]
+lint = ["pre-commit"]
+
 
 [tool.mypy]
 files = ["src", "tests"]
@@ -49,13 +71,11 @@ extend-ignore = [
     "S101",  # raise errors for asserts.
     "B905",  # strict parameter for zip that was implemented in py310.
     "I",  # ignore isort
-    "ANN101",  # type annotating self
-    "ANN102",  # type annotating cls
     "FBT",  # flake8-boolean-trap
     "EM",  # flake8-errmsg
     "ANN401",  # flake8-annotate typing.Any
     "PD",  # pandas-vet
-    "COM812",  # trailing comma missing, but black takes care of that
+    "COM812",  # trailing comma missing, but ruff format takes care of that
 ]
 
 
@@ -65,3 +85,20 @@ extend-ignore = [
 
 [tool.ruff.pydocstyle]
 convention = "numpy"
+
+
+[tool.pytest.ini_options]
+addopts = ["--doctest-modules"]
+filterwarnings = [
+    "ignore: the imp module is deprecated in favour of importlib",
+    "ignore: Using or importing the ABCs from 'collections' instead of",
+    "ignore: The (parser|symbol) module is deprecated and will be removed in future",
+]
+junit_family = "xunit2"
+markers = [
+    "wip: Tests that are work-in-progress.",
+    "unit: Flag for unit tests which target mainly a single function.",
+    "integration: Flag for integration tests which may comprise of multiple unit tests.",
+    "end_to_end: Flag for tests that cover the whole program.",
+]
+norecursedirs = [".idea"]

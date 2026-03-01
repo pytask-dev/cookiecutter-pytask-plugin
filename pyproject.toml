@@ -1,3 +1,70 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "cookiecutter_pytask_plugin"
+version = "1.0.0"
+description = "A minimal template for plugins for pytask."
+requires-python = ">=3.10"
+dependencies = ["cookiecutter"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Operating System :: MacOS :: MacOS X",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Scientific/Engineering",
+]
+
+[[project.authors]]
+name = "Tobias Raabe"
+email = "raabe@posteo.de"
+
+[project.readme]
+file = "README.md"
+content-type = "text/markdown"
+
+[project.license]
+text = "MIT"
+
+[project.urls]
+Changelog = "https://cookiecutter-pytask-plugin.readthedocs.io/en/latest/changes.html"
+Documentation = "https://cookiecutter-pytask-plugin.readthedocs.io/en/latest"
+Github = "https://github.com/pytask-dev/cookiecutter-pytask-plugin"
+Tracker = "https://github.com/pytask-dev/cookiecutter-pytask-plugin/issues"
+
+[dependency-groups]
+docs = [
+    "furo",
+    "ipython",
+    "myst-parser",
+    "nbsphinx",
+    "sphinx",
+    "sphinx-autoapi",
+    "sphinx-click",
+    "sphinx-copybutton",
+    "sphinx-panels",
+    "sphinxext-opengraph",
+]
+test = [
+    "cookiecutter",
+    "pytest",
+    "pytest-cookies",
+    "pytest-cov",
+    "pytest-xdist",
+]
+typing = ["mypy"]
+lint = ["pre-commit"]
+
+[tool.hatch.build.targets.wheel]
+only-include = ["cookiecutter.json", "hooks", "{{cookiecutter.package_name}}"]
+
+[tool.hatch.build.targets.sdist]
+only-include = ["cookiecutter.json", "hooks", "{{cookiecutter.package_name}}"]
+
 [tool.mypy]
 files = ["tests"]
 check_untyped_defs = true
@@ -8,19 +75,18 @@ no_implicit_optional = true
 warn_redundant_casts = true
 warn_unused_ignores = true
 
-
 [[tool.mypy.overrides]]
 module = "tests.*"
 disallow_untyped_defs = false
 ignore_errors = true
 
-
 [tool.ruff]
-target-version = "py37"
-select = ["ALL"]
 fix = true
+unsafe-fixes = true
+
+[tool.ruff.lint]
+select = ["ALL"]
 extend-ignore = [
-    # Numpy docstyle
     "D107",
     "D203",
     "D212",
@@ -30,27 +96,37 @@ extend-ignore = [
     "D415",
     "D416",
     "D417",
-    # Others.
-    "D404",  # Do not start module docstring with "This".
-    "RET504",  # unnecessary variable assignment before return.
-    "S101",  # raise errors for asserts.
-    "B905",  # strict parameter for zip that was implemented in py310.
-    "I",  # ignore isort
-    "ANN101",  # type annotating self
-    "ANN102",  # type annotating cls
-    "FBT",  # flake8-boolean-trap
-    "EM",  # flake8-errmsg
-    "ANN401",  # flake8-annotate typing.Any
-    "PD",  # pandas-vet
-    "COM812",  # trailing comma missing, but black takes care of that
+    "D404",
+    "RET504",
+    "S101",
+    "B905",
+    "FBT",
+    "EM",
+    "ANN401",
+    "PD",
+    "COM812",
+    "ISC001",
 ]
 
-
-[tool.ruff.per-file-ignores]
+[tool.ruff.lint.per-file-ignores]
 "hooks/post_gen_project.py" = ["PLR0133"]
 "hooks/*" = ["INP001"]
 "tests/*" = ["D", "ANN"]
 
-
-[tool.ruff.pydocstyle]
+[tool.ruff.lint.pydocstyle]
 convention = "numpy"
+
+[tool.pytest.ini_options]
+addopts = ["--doctest-modules"]
+filterwarnings = [
+    "ignore: the imp module is deprecated in favour of importlib",
+    "ignore: Using or importing the ABCs from 'collections' instead of from",
+    "ignore: The (parser|symbol) module is deprecated and will be removed in future",
+]
+markers = [
+    "wip: Tests that are work-in-progress.",
+    "unit: Flag for unit tests which target mainly a single function.",
+    "integration: Flag for integration tests which may comprise of multiple unit tests.",
+    "end_to_end: Flag for tests that cover the whole program.",
+]
+norecursedirs = [".idea"]

@@ -16,21 +16,16 @@ cookiecutter.github_username }}/{{ cookiecutter.package_name }}) {% endif %}
 cookiecutter.github_username }}/{{ cookiecutter.package_name
 }}/main.svg)](https://results.pre-commit.ci/latest/github/{{
 cookiecutter.github_username }}/{{ cookiecutter.package_name }}/main)
-[![image](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![code style: ruff](https://img.shields.io/badge/code%20style-ruff-261230.svg)](https://github.com/astral-sh/ruff)
 
 
 ## Installation
 
 {{ cookiecutter.package_name }} is available on [PyPI](https://pypi.org/project/{{
-cookiecutter.package_name }}) and [Anaconda.org](https://anaconda.org/conda-forge/{{
 cookiecutter.package_name }}). Install it with
 
 ```console
 $ pip install {{ cookiecutter.package_name }}
-
-# or
-
-$ conda install -c conda-forge {{ cookiecutter.package_name }}
 ```
 
 ## Changes

@@ -5,7 +5,7 @@
 [![image](https://img.shields.io/github/actions/workflow/status/pytask-dev/cookiecutter-pytask-plugin/main.yml?branch=main)](https://github.com/pytask-dev/cookiecutter-pytask-plugin/actions?query=branch%3Amain)
 [![image](https://codecov.io/gh/pytask-dev/cookiecutter-pytask-plugin/branch/main/graph/badge.svg)](https://codecov.io/gh/pytask-dev/cookiecutter-pytask-plugin)
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/pytask-dev/cookiecutter-pytask-plugin/main.svg)](https://results.pre-commit.ci/latest/github/pytask-dev/cookiecutter-pytask-plugin/main)
-[![image](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![code style: ruff](https://img.shields.io/badge/code%20style-ruff-261230.svg)](https://github.com/astral-sh/ruff)
 
 This repository contains a minimal cookiecutter template for a plugin for
 [pytask](https://github.com/pytask-dev/pytask) .
@@ -16,8 +16,6 @@ First, install cookiecutter.
 
 ```console
 $ pip install cookiecutter
-
-$ conda install -c conda-forge cookiecutter
 ```
 
 Then, set up the template for the new plugin with

@@ -1,0 +1,22 @@
+# Install all dependencies
+install:
+    uv sync --all-groups
+
+# Run tests
+test:
+    uv run --group test --with-editable . pytest
+
+# Run tests with coverage
+test-cov:
+    uv run --group test --with-editable . pytest --cov=./ --cov-report=xml
+
+# Run type checking
+typing:
+    uv run --group typing --with-editable . mypy src/ tests/
+
+# Run linting and formatting
+lint:
+    uv run --group lint pre-commit run --all-files
+
+# Run all checks
+check: lint typing test

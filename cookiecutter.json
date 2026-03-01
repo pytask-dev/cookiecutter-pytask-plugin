@@ -6,7 +6,6 @@
   "github_username": "{{ cookiecutter.author.lower().replace(' ', '') }}",
   "github_email": "{{ cookiecutter.email }}",
   "python_version": "3.10",
-  "add_tox": ["yes", "no"],
   "add_github_actions": ["yes", "no"],
   "add_readthedocs": ["yes", "no"],
   "add_codecov": ["yes", "no"],
@@ -19,8 +18,6 @@
     "Not open source"
   ],
   "make_initial_commit": ["no", "yes"],
-  "conda_environment_name": "{{ cookiecutter.package_name }}",
-  "create_conda_environment_at_finish": ["no", "yes"],
   "_copy_without_render": [
     ".github/workflows/main.yml", ".github/workflows/publish-to-pypi.yml"
   ],
