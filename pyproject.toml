@@ -100,8 +100,6 @@ extend-ignore = [
     "RET504",
     "S101",
     "B905",
-    "ANN101",
-    "ANN102",
     "FBT",
     "EM",
     "ANN401",
