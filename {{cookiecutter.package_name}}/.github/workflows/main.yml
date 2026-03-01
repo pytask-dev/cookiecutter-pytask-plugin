@@ -25,6 +25,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v7
         with:
+          version: "0.9.9"
           enable-cache: true
       - name: Install just
         uses: extractions/setup-just@v3
@@ -45,6 +46,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v7
         with:
+          version: "0.9.9"
           enable-cache: true
           python-version: ${{ matrix.python-version }}
       - name: Install just
