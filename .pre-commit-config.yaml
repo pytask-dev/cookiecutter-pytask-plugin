@@ -34,11 +34,6 @@ repos:
     -   id: python-no-log-warn
     -   id: python-use-type-annotations
     -   id: text-unicode-replacement-char
--   repo: https://github.com/asottile/reorder-python-imports
-    rev: v3.16.0
-    hooks:
-    -   id: reorder-python-imports
-        args: [--py37-plus, --add-import, 'from __future__ import annotations']
 -   repo: https://github.com/asottile/setup-cfg-fmt
     rev: v3.2.0
     hooks:

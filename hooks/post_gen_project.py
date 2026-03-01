@@ -67,7 +67,7 @@ def main() -> None:
             conda_exe = shutil.which("conda")
 
         if conda_exe:
-            subprocess.run(
+            subprocess.run(  # noqa: S603
                 (
                     conda_exe,
                     "env",
@@ -82,7 +82,8 @@ def main() -> None:
         else:
             warnings.warn(
                 "conda environment could not be created since no conda or mamba "
-                "executable was found."
+                "executable was found.",
+                stacklevel=1,
             )
 
 
