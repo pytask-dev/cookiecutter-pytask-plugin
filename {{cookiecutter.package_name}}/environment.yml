@@ -5,7 +5,7 @@ channels:
   - nodefaults
 
 dependencies:
-  - python
+  - python ={{ cookiecutter.python_version }}
   - pip
   - setuptools_scm
   - toml
