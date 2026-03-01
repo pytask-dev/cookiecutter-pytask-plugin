@@ -5,7 +5,6 @@ from __future__ import annotations
 import re
 
 MODULE_REGEX = r"^[_a-zA-Z][_a-zA-Z0-9]*$"
-ENVIRON_REGEX = r"^[-_a-zA-Z0-9]*$"
 PYTHONVERSION_REGEX = r"^(3\.(1[0-9]|[2-9][0-9])(\.[0-9]{1,2})?)$"
 PYTHONVERSION_MIN = "3.10"
 
@@ -14,13 +13,6 @@ ERROR: The project slug ({module_name}) is not a valid Python module name.
 
 Please do not use anything other than letters, numbers, and underscores '_'.
 The first character must not be a number.
-"""
-
-EXCEPTION_MSG_ENVIRON_NAME = """
-ERROR: The project slug ({environment_name}) is not a valid conda environment name.
-
-Please do not use anything other than letters, numbers, underscores '_',
-and minus signs '-'.
 """
 
 EXCEPTION_MSG_PYTHONVERSION = """
@@ -42,11 +34,6 @@ def main() -> None:
 
     if not re.match(MODULE_REGEX, module_name):
         raise ValueError(EXCEPTION_MSG_MODULE_NAME.format(module_name=module_name))
-
-    environment_name = "{{ cookiecutter.conda_environment_name }}"
-
-    if not re.match(ENVIRON_REGEX, environment_name):
-        raise ValueError(EXCEPTION_MSG_ENVIRON_NAME.format(environment_name))
 
     python_version = "{{ cookiecutter.python_version }}"
 

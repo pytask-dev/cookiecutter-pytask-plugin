@@ -4,9 +4,15 @@ build:
   os: ubuntu-24.04
   tools:
     python: "3.11"
-
-conda:
-  environment: docs/rtd_environment.yml
+  jobs:
+    create_environment:
+      - asdf plugin add uv
+      - asdf install uv latest
+      - asdf global uv latest
+      - UV_NO_EDITABLE=1 UV_PROJECT_ENVIRONMENT=$READTHEDOCS_VIRTUALENV_PATH uv sync --group docs
+    install:
+      - "true"
 
 sphinx:
   configuration: docs/source/conf.py
+  fail_on_warning: false

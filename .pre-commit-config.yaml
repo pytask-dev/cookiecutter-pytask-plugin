@@ -15,7 +15,6 @@ repos:
     -   id: check-yaml
         exclude:  |
             (?x)^(
-                {{cookiecutter.package_name}}/environment.yml|
                 {{cookiecutter.package_name}}/.pre-commit-config.yaml
             )$
     -   id: debug-statements

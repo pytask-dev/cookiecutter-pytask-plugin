@@ -22,15 +22,10 @@ cookiecutter.github_username }}/{{ cookiecutter.package_name }}/main)
 ## Installation
 
 {{ cookiecutter.package_name }} is available on [PyPI](https://pypi.org/project/{{
-cookiecutter.package_name }}) and [Anaconda.org](https://anaconda.org/conda-forge/{{
 cookiecutter.package_name }}). Install it with
 
 ```console
 $ pip install {{ cookiecutter.package_name }}
-
-# or
-
-$ conda install -c conda-forge {{ cookiecutter.package_name }}
 ```
 
 ## Changes

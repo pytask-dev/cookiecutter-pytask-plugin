@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import shutil
 import subprocess
-import warnings
 from contextlib import suppress
 from pathlib import Path
 
@@ -55,47 +54,6 @@ def main() -> None:
             check=True,
             capture_output=True,
         )
-
-    if "{{ cookiecutter.create_conda_environment_at_finish }}" == "yes":
-        if shutil.which("mamba") is not None:
-            conda_exe = shutil.which("mamba")
-        else:
-            conda_exe = shutil.which("conda")
-
-        if conda_exe:
-            command = (
-                conda_exe,
-                "env",
-                "create",
-                "-f",
-                (project_path / "environment.yml").absolute().as_posix(),
-                "--force",
-            )
-            try:
-                subprocess.run(command, check=True)  # noqa: S603
-            except subprocess.CalledProcessError:
-                fallback_conda = shutil.which("conda")
-                if fallback_conda and fallback_conda != conda_exe:
-                    subprocess.run(  # noqa: S603
-                        (
-                            fallback_conda,
-                            "env",
-                            "create",
-                            "-f",
-                            (project_path / "environment.yml").absolute().as_posix(),
-                            "--force",
-                        ),
-                        check=True,
-                    )
-                else:
-                    raise
-        else:
-            warnings.warn(
-                "conda environment could not be created since no conda or mamba "
-                "executable was found.",
-                stacklevel=1,
-            )
-
 
 if __name__ == "__main__":
     main()

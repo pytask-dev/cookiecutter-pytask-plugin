@@ -16,8 +16,6 @@ First, install cookiecutter.
 
 ```console
 $ pip install cookiecutter
-
-$ conda install -c conda-forge cookiecutter
 ```
 
 Then, set up the template for the new plugin with
