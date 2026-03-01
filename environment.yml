@@ -22,7 +22,7 @@ dependencies:
   # - pytest-cookies>=0.6.2
   - pytest-cov
   - pytest-xdist
-  - tox-conda
+  - uv
 
   # Documentation
   - furo

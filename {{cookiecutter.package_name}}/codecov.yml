@@ -20,5 +20,4 @@ coverage:
           - end_to_end
 
 ignore:
-  - ".tox/**/*"
   - "src/{{ cookiecutter.__package_name }}/_version.py"

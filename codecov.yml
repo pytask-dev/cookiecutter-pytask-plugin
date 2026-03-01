@@ -21,6 +21,3 @@ coverage:
         threshold: 1%
         flags:
           - end_to_end
-
-ignore:
-  - ".tox/**/*"
