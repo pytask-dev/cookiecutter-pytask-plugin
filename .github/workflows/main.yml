@@ -37,7 +37,8 @@ jobs:
         with:
           auto-update-conda: false
           python-version: ${{ matrix.python-version }}
-          channels: conda-forge,nodefaults
+          channels: conda-forge
+          conda-remove-defaults: true
           miniforge-variant: Miniforge3
 
       - name: Install core dependencies.
