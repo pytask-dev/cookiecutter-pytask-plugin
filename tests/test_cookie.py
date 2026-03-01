@@ -61,4 +61,3 @@ def test_remove_license(cookies):
     assert result.exception is None
 
     assert not license_.exists()
-

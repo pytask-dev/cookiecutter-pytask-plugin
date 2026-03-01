@@ -55,5 +55,6 @@ def main() -> None:
             capture_output=True,
         )
 
+
 if __name__ == "__main__":
     main()
