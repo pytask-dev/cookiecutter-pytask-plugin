@@ -12,7 +12,7 @@ test-cov:
 
 # Run type checking
 typing:
-    uv run --group typing --with-editable . mypy src/ tests/
+    uv run --group typing --group test --with-editable . --isolated ty check
 
 # Run linting and formatting
 lint:

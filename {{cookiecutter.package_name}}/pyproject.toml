@@ -25,25 +25,8 @@ test = [
     "pytest-xdist",
     "pytask-parallel>=0.2",
 ]
-typing = ["mypy"]
+typing = ["ty>=0.0.8"]
 lint = ["pre-commit"]
-
-
-[tool.mypy]
-files = ["src", "tests"]
-check_untyped_defs = true
-disallow_any_generics = true
-disallow_incomplete_defs = true
-disallow_untyped_defs = true
-no_implicit_optional = true
-warn_redundant_casts = true
-warn_unused_ignores = true
-
-
-[[tool.mypy.overrides]]
-module = "tests.*"
-disallow_untyped_defs = false
-ignore_errors = true
 
 
 [tool.pytask.ini_options]
@@ -102,3 +85,13 @@ markers = [
     "end_to_end: Flag for tests that cover the whole program.",
 ]
 norecursedirs = [".idea"]
+
+
+[tool.ty.rules]
+unused-ignore-comment = "error"
+
+[tool.ty.src]
+include = ["src", "tests"]
+
+[tool.ty.terminal]
+error-on-warning = true

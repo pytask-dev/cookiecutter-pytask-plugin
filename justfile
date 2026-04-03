@@ -9,7 +9,7 @@ test:
 
 # Run type checking
 typing:
-    uv run --group typing mypy hooks/ tests/
+    uv run --group typing --group test --isolated ty check
 
 # Run linting and formatting
 lint:
