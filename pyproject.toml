@@ -57,7 +57,6 @@ test = [
     "pytest-xdist",
 ]
 typing = ["ty>=0.0.28"]
-lint = ["pre-commit"]
 
 [tool.hatch.build.targets.wheel]
 only-include = ["cookiecutter.json", "hooks", "{{cookiecutter.package_name}}"]

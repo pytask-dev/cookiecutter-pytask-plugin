@@ -13,7 +13,7 @@ typing:
 
 # Run linting and formatting
 lint:
-    uv run --group lint pre-commit run --all-files
+    uvx prek run -a
 
 # Build docs
 docs:

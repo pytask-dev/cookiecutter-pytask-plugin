@@ -26,7 +26,6 @@ test = [
     "pytask-parallel>=0.2",
 ]
 typing = ["ty>=0.0.28"]
-lint = ["pre-commit"]
 
 
 [tool.pytask.ini_options]
