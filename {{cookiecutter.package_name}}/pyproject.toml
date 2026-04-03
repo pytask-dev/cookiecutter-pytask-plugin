@@ -25,7 +25,7 @@ test = [
     "pytest-xdist",
     "pytask-parallel>=0.2",
 ]
-typing = ["ty>=0.0.8"]
+typing = ["ty>=0.0.28"]
 lint = ["pre-commit"]
 
 
