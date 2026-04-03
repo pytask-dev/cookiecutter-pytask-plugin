@@ -100,9 +100,6 @@ extend-ignore = [
 [tool.ruff.lint.pydocstyle]
 convention = "numpy"
 
-[tool.ty.rules]
-unused-ignore-comment = "error"
-
 [tool.ty.src]
 include = ["hooks", "tests"]
 
