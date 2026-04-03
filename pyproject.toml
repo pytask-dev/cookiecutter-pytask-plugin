@@ -109,7 +109,7 @@ extend-ignore = [
 ]
 
 [tool.ruff.lint.per-file-ignores]
-"hooks/post_gen_project.py" = ["PLR0133"]
+"hooks/post_gen_project.py" = ["PLR0133", "S603"]
 "hooks/*" = ["INP001"]
 "tests/*" = ["D", "ANN"]
 

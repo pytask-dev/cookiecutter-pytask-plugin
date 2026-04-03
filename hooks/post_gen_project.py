@@ -24,6 +24,11 @@ def remove_directory(*filepath: str | Path) -> None:
 def main() -> None:
     """Apply post generation hooks."""
     project_path = Path.cwd()
+    git = shutil.which("git")
+
+    if git is None:
+        msg = "Could not find 'git' on PATH."
+        raise RuntimeError(msg)
 
     if "{{ cookiecutter.open_source_license }}" == "Not open source":
         remove_file(project_path, "LICENSE")
@@ -35,22 +40,22 @@ def main() -> None:
         remove_file(project_path, ".readthedocs.yaml")
 
     subprocess.run(
-        ("git", "init", "--initial-branch", "main"), check=True, capture_output=True
+        (git, "init", "--initial-branch", "main"), check=True, capture_output=True
     )
 
     if "{{ cookiecutter.make_initial_commit }}" == "yes":
         # Create an initial commit on the main branch and restore global default name.
         subprocess.run(
-            ("git", "config", "user.name", "'{{ cookiecutter.github_username }}'"),
+            (git, "config", "user.name", "'{{ cookiecutter.github_username }}'"),
             check=True,
         )
         subprocess.run(
-            ("git", "config", "user.email", "'{{ cookiecutter.github_email }}'"),
+            (git, "config", "user.email", "'{{ cookiecutter.github_email }}'"),
             check=True,
         )
-        subprocess.run(("git", "add", "."), check=True)
+        subprocess.run((git, "add", "."), check=True)
         subprocess.run(
-            ("git", "commit", "-m", "'Initial commit.'"),
+            (git, "commit", "-m", "'Initial commit.'"),
             check=True,
             capture_output=True,
         )
