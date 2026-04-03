@@ -439,7 +439,7 @@ test = [
     { name = "pytest-cov" },
     { name = "pytest-xdist" },
 ]
-typing = [{ name = "ty", specifier = ">=0.0.8" }]
+typing = [{ name = "ty", specifier = ">=0.0.28" }]
 
 [[package]]
 name = "coverage"
