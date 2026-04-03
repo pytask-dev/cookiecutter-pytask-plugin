@@ -9,11 +9,11 @@ test:
 
 # Run type checking
 typing:
-    uv run --group typing mypy hooks/ tests/
+    uv run --group typing --group test --isolated ty check
 
 # Run linting and formatting
 lint:
-    uv run --group lint pre-commit run --all-files
+    uvx prek run -a
 
 # Build docs
 docs:

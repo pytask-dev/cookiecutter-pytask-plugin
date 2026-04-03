@@ -1,3 +1,3 @@
-"""This file is necessary to apply custom mypy configurations for the tests."""
+"""Test package marker for the type-checker configuration."""
 
 from __future__ import annotations
