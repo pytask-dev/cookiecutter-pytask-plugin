@@ -1,9 +1,0 @@
-prune tests
-prune docs
-
-exclude *.yml
-exclude *.yaml
-exclude *.ini
-
-include *.md
-include LICENSE

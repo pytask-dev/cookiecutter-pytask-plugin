@@ -44,7 +44,7 @@ LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
-{% elif cookiecutter.open_source_license == 'ISCL' %}
+{% elif cookiecutter.open_source_license == 'ISC' %}
 ISC License
 
 Copyright (c) {% now 'local', '%Y' %}, {{ cookiecutter.author }}

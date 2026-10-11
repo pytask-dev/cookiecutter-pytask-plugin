@@ -15,4 +15,3 @@ __pycache__
 
 build
 dist
-src/{{ cookiecutter.__package_name }}/_version.py

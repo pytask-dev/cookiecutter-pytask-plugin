@@ -1,10 +1,55 @@
 [build-system]
-requires = ["setuptools>=45", "wheel", "setuptools_scm[toml]>=6.0"]
-build-backend = "setuptools.build_meta"
+requires = ["uv_build>=0.13.0,<0.14"]
+build-backend = "uv_build"
 
 
-[tool.setuptools_scm]
-write_to = "src/{{ cookiecutter.__package_name }}/_version.py"
+[project]
+name = "{{ cookiecutter.__package_name }}"
+description = "{{ cookiecutter.package_description }}"
+requires-python = ">=3.11"
+version = "0.1.0"
+dependencies = ["click", "pytask>=0.2"]
+authors = [{name = "{{ cookiecutter.author }}", email = "{{ cookiecutter.email }}"}]
+readme = {file = "README.md", content-type = "text/markdown"}
+{% if cookiecutter.open_source_license == "MIT" %}
+license = "MIT"
+{% elif cookiecutter.open_source_license == "BSD" %}
+license = "BSD-3-Clause"
+{% elif cookiecutter.open_source_license == "ISC" %}
+license = "ISC"
+{% elif cookiecutter.open_source_license == "Apache Software License 2.0" %}
+license = "Apache-2.0"
+{% elif cookiecutter.open_source_license == "GNU General Public License v3" %}
+license = "GPL-3.0-only"
+{% endif %}
+{% if cookiecutter.open_source_license != "Not open source" %}
+license-files = ["LICENSE"]
+{% else %}
+license-files = []
+{% endif %}
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+]
+
+[project.urls]
+Homepage = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.package_name }}"
+Changelog = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.package_name }}/blob/main/CHANGES.md"
+Documentation = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.package_name }}"
+Github = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.package_name }}"
+Tracker = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.package_name }}/issues"
+
+[project.entry-points.pytask]
+{{ cookiecutter.__package_name }} = "{{ cookiecutter.__package_name }}.plugin"
+
+[tool.uv.build-backend]
+source-include = ["CHANGES.md"]
 
 [dependency-groups]
 docs = [
