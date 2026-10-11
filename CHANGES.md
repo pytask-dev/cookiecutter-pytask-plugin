@@ -5,7 +5,7 @@ in reverse chronological order.
 
 ## Unreleased
 
-- Require Python 3.11 or newer for the template and generated projects.
+- {pull}`59` requires Python 3.11 or newer for the template and generated projects.
 
 ## 1.1.0 - 2023-01-06
 
