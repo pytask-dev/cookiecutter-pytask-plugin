@@ -1,5 +1,8 @@
 from __future__ import annotations
 
+import os
+import shutil
+import subprocess
 import sys
 
 import pytest
@@ -61,3 +64,57 @@ def test_remove_license(cookies):
     assert result.exception is None
 
     assert not license_.exists()
+
+
+@pytest.mark.end_to_end
+@pytest.mark.parametrize("license_name", ["MIT", "Not open source"])
+def test_install_generated_plugin(cookies, tmp_path, license_name):
+    uv = shutil.which("uv")
+    assert uv is not None
+    result = cookies.bake(
+        extra_context={
+            "package_name": "pytask-template-check",
+            "open_source_license": license_name,
+        }
+    )
+    assert result.exit_code == 0
+    wheel_dir = tmp_path / "dist"
+    env = {**os.environ, "SETUPTOOLS_SCM_PRETEND_VERSION": "0.0.0"}
+    subprocess.run(  # noqa: S603
+        (uv, "build", "--wheel", "--out-dir", str(wheel_dir)),
+        cwd=result.project_path,
+        env=env,
+        check=True,
+    )
+    wheel = next(wheel_dir.glob("*.whl"))
+    source = """
+from importlib import metadata
+from pytask import cli
+from click.testing import CliRunner
+import pytask_template_check
+
+entry_point, = metadata.entry_points(
+    group="pytask", name="pytask_template_check"
+)
+assert entry_point.load().__name__ == "pytask_template_check.plugin"
+assert pytask_template_check.__version__ == metadata.version("pytask-template-check")
+assert CliRunner().invoke(cli, ["--help"]).exit_code == 0
+"""
+    subprocess.run(  # noqa: S603
+        (
+            uv,
+            "run",
+            "--no-project",
+            "--isolated",
+            "--python",
+            sys.executable,
+            "--with",
+            str(wheel),
+            "python",
+            "-c",
+            source,
+        ),
+        cwd=result.project_path,
+        env=env,
+        check=True,
+    )

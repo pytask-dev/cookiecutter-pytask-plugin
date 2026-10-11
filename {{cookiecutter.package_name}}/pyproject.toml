@@ -1,7 +1,60 @@
 [build-system]
-requires = ["setuptools>=45", "wheel", "setuptools_scm[toml]>=6.0"]
+requires = ["setuptools>=61", "wheel", "setuptools_scm[toml]>=6.0"]
 build-backend = "setuptools.build_meta"
 
+
+[project]
+name = "{{ cookiecutter.__package_name }}"
+description = "{{ cookiecutter.package_description }}"
+requires-python = ">=3.11"
+dynamic = ["version"]
+dependencies = ["click", "pytask>=0.2"]
+authors = [{name = "{{ cookiecutter.author }}", email = "{{ cookiecutter.email }}"}]
+readme = {file = "README.md", content-type = "text/markdown"}
+license = {text = "{{ cookiecutter.open_source_license }}"}
+classifiers = [
+    "Development Status :: 3 - Alpha",
+{% if cookiecutter.open_source_license == "MIT" %}
+    "License :: OSI Approved :: MIT License",
+{% elif cookiecutter.open_source_license == "BSD" %}
+    "License :: OSI Approved :: BSD License",
+{% elif cookiecutter.open_source_license == "ISC" %}
+    "License :: OSI Approved :: ISC License (ISCL)",
+{% elif cookiecutter.open_source_license == "Apache Software License 2.0" %}
+    "License :: OSI Approved :: Apache Software License",
+{% elif cookiecutter.open_source_license == "GNU General Public License v3" %}
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+{% endif %}
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+]
+
+[project.urls]
+Homepage = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.package_name }}"
+Changelog = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.package_name }}/blob/main/CHANGES.md"
+Documentation = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.package_name }}"
+Github = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.package_name }}"
+Tracker = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.package_name }}/issues"
+
+[project.entry-points.pytask]
+{{ cookiecutter.__package_name }} = "{{ cookiecutter.__package_name }}.plugin"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+include-package-data = true
+zip-safe = false
+
+[tool.setuptools.packages.find]
+where = ["src"]
+namespaces = false
+
+[tool.check-manifest]
+ignore = ["src/{{ cookiecutter.__package_name }}/_version.py"]
 
 [tool.setuptools_scm]
 write_to = "src/{{ cookiecutter.__package_name }}/_version.py"

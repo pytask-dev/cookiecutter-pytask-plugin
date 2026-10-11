@@ -5,6 +5,8 @@ in reverse chronological order.
 
 ## Unreleased
 
+- {pull}`59` migrates generated plugin metadata to `pyproject.toml`, removes redundant
+  `setup.cfg` files, and provides an importable plugin hook module.
 - {pull}`59` requires Python 3.11 or newer for the template and generated projects.
 
 ## 1.1.0 - 2023-01-06
