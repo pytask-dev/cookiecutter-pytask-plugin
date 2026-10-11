@@ -18,6 +18,3 @@ coverage:
         threshold: 1%
         flags:
           - end_to_end
-
-ignore:
-  - "src/{{ cookiecutter.__package_name }}/_version.py"

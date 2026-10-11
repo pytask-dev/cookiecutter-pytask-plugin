@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import os
 import shutil
 import subprocess
 import sys
@@ -78,12 +77,14 @@ def test_install_generated_plugin(cookies, tmp_path, license_name):
         }
     )
     assert result.exit_code == 0
+    project_path = tmp_path / "project"
+    shutil.copytree(
+        result.project_path, project_path, ignore=shutil.ignore_patterns(".git")
+    )
     wheel_dir = tmp_path / "dist"
-    env = {**os.environ, "SETUPTOOLS_SCM_PRETEND_VERSION": "0.0.0"}
     subprocess.run(  # noqa: S603
         (uv, "build", "--wheel", "--out-dir", str(wheel_dir)),
-        cwd=result.project_path,
-        env=env,
+        cwd=project_path,
         check=True,
     )
     wheel = next(wheel_dir.glob("*.whl"))
@@ -97,6 +98,7 @@ entry_point, = metadata.entry_points(
     group="pytask", name="pytask_template_check"
 )
 assert entry_point.load().__name__ == "pytask_template_check.plugin"
+assert metadata.version("pytask-template-check") == "0.1.0"
 assert pytask_template_check.__version__ == metadata.version("pytask-template-check")
 assert CliRunner().invoke(cli, ["--help"]).exit_code == 0
 """
@@ -114,7 +116,6 @@ assert CliRunner().invoke(cli, ["--help"]).exit_code == 0
             "-c",
             source,
         ),
-        cwd=result.project_path,
-        env=env,
+        cwd=project_path,
         check=True,
     )
