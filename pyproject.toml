@@ -71,6 +71,7 @@ unsafe-fixes = true
 [tool.ruff.lint]
 select = ["ALL"]
 extend-ignore = [
+    "CPY001", # Copyright headers are not required.
     "D107",
     "D203",
     "D212",
