@@ -6,7 +6,7 @@ build-backend = "hatchling.build"
 name = "cookiecutter_pytask_plugin"
 version = "1.0.0"
 description = "A minimal template for plugins for pytask."
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 dependencies = ["cookiecutter"]
 classifiers = [
     "Development Status :: 3 - Alpha",

@@ -5,7 +5,7 @@
   "package_description": "A pytask plugin for ...",
   "github_username": "{{ cookiecutter.author.lower().replace(' ', '') }}",
   "github_email": "{{ cookiecutter.email }}",
-  "python_version": "3.10",
+  "python_version": "3.11",
   "add_github_actions": ["yes", "no"],
   "add_readthedocs": ["yes", "no"],
   "add_codecov": ["yes", "no"],

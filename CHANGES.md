@@ -3,6 +3,10 @@
 This is a record of all past cookiecutter-pytask-plugin releases and what went into them
 in reverse chronological order.
 
+## Unreleased
+
+- Require Python 3.11 or newer for the template and generated projects.
+
 ## 1.1.0 - 2023-01-06
 
 - {pull}`2` fixes the readme.

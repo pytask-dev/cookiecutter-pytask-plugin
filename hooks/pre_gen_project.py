@@ -5,8 +5,8 @@ from __future__ import annotations
 import re
 
 MODULE_REGEX = r"^[_a-zA-Z][_a-zA-Z0-9]*$"
-PYTHONVERSION_REGEX = r"^(3\.(1[0-9]|[2-9][0-9])(\.[0-9]{1,2})?)$"
-PYTHONVERSION_MIN = "3.10"
+PYTHONVERSION_REGEX = r"^(3\.(1[1-9]|[2-9][0-9])(\.[0-9]{1,2})?)$"
+PYTHONVERSION_MIN = "3.11"
 
 EXCEPTION_MSG_MODULE_NAME = """
 ERROR: The project slug ({module_name}) is not a valid Python module name.
